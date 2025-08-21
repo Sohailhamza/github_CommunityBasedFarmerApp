@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Toolbar -->
+<!--    <androidx.appcompat.widget.Toolbar-->
+<!--        android:id="@+id/toolbar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="?attr/actionBarSize"-->
+<!--        android:background="@color/green"-->
+<!--        android:elevation="4dp"-->
+<!--        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"-->
+<!--        app:navigationIcon="@drawable/ic_back_arrow">-->
+
+<!--        &lt;!&ndash; Centered Title &ndash;&gt;-->
+<!--        <TextView-->
+<!--            android:id="@+id/toolbar_title"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="40dp"-->
+
+<!--            android:gravity="center"-->
+<!--            android:layout_marginRight="5dp"-->
+<!--            android:text="Activity Name"-->
+<!--            android:textColor="@android:color/white"-->
+<!--            android:textSize="20sp"-->
+<!--            android:fontFamily="sans-serif" />-->
+<!--    </androidx.appcompat.widget.Toolbar>-->
+
+    <!-- FrameLayout to hold fragments -->
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_navigation"/>
+
+    <!-- Bottom Navigation View -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/bottom_nav_menu"
+        app:itemIconTint="@color/nav_icon_selector"
+        app:itemTextColor="@color/nav_icon_selector" />
+</RelativeLayout>

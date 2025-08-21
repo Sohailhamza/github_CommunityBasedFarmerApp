@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="0dp"
+    android:background="@android:color/white"
+    tools:context=".ContactSeller">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#327830"
+        android:paddingTop="20dp"
+        android:orientation="vertical"
+        >
+        <!-- Back Button -->
+
+        <!-- Title -->
+        <!--    <ImageButton-->
+        <!--        android:id="@+id/ic_arrow_back"-->
+        <!--        android:layout_width="wrap_content"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:background="@android:color/transparent"-->
+        <!--        android:paddingStart="10dp"-->
+        <!--        android:paddingTop="10dp"-->
+        <!--        android:src="@drawable/ic_arrow_back" />-->
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Contact Seller"
+            android:textSize="30sp"
+            android:layout_marginBottom="10dp"
+            android:textColor="#FFFFFF"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="16dp"
+        >
+        <!-- Description -->
+        <TextView
+            android:id="@+id/tvDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/don_t_hesitate_to_contact_us_whether_you_have_a_suggestion_on_our_improvement_a_complain_to_discuss_or_an_issue_to_solve"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"
+            android:textColor="#616060"/>
+
+        <!-- Call Us and Email Us Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+
+            android:layout_marginTop="16dp">
+
+
+            <Button
+                android:id="@+id/btnCallUs"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/green"
+                android:text="Call us"
+                android:textColor="@android:color/white"
+                android:drawableTop="@drawable/ic_call"
+                android:padding="16dp"/>
+
+            <Button
+                android:id="@+id/btnEmailUs"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/green"
+                android:text="Email us"
+                android:textColor="@android:color/white"
+                android:drawableTop="@drawable/ic_email"
+                android:padding="16dp"
+                android:layout_marginStart="8dp"/>
+
+        </LinearLayout>
+
+        <!-- Social Media Section -->
+        <TextView
+            android:id="@+id/tvSocialMediaTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Contact us on Social Media"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="16dp">
+
+            <!-- Instagram -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp"
+                android:background="@drawable/edit_text_background"
+                >
+
+                <ImageView
+                    android:id="@+id/imgInstagram"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_instagram"/>
+
+                <TextView
+                    android:id="@+id/tvInstagram"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Instagram\n4.6K Followers • 118 Posts"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/black"/>
+
+                <!--            <ImageButton-->
+                <!--                android:id="@+id/btnInstagramShare"-->
+                <!--                android:layout_width="wrap_content"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:layout_gravity="end"-->
+                <!--                android:src="@drawable/ic_share"-->
+                <!--                android:background="@android:color/transparent"/>-->
+            </LinearLayout>
+
+            <!-- Telegram -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp"
+                android:background="@drawable/edit_text_background"
+                android:layout_marginTop="8dp">
+
+                <ImageView
+                    android:id="@+id/imgTelegram"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_telegram"/>
+
+                <TextView
+                    android:id="@+id/tvTelegram"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Telegram\n1.3K Followers • 85 Posts"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/black"/>
+
+                <!--            <ImageButton-->
+                <!--                android:id="@+id/btnTelegramShare"-->
+                <!--                android:layout_width="wrap_content"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:layout_gravity="end"-->
+                <!--                android:src="@drawable/ic_share"-->
+                <!--                android:background="@android:color/transparent"/>-->
+            </LinearLayout>
+
+            <!-- Facebook -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp"
+                android:background="@drawable/edit_text_background"
+                android:layout_marginTop="8dp">
+
+                <ImageView
+                    android:id="@+id/imgFacebook"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_facebook"/>
+
+                <TextView
+                    android:id="@+id/tvFacebook"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Facebook\n3.8K Followers • 136 Posts"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/black"/>
+
+                <!--            <ImageButton-->
+                <!--                android:id="@+id/btnFacebookShare"-->
+                <!--                android:layout_width="wrap_content"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:layout_gravity="end"-->
+                <!--                android:src="@drawable/ic_share"-->
+                <!--                android:background="@android:color/transparent"/>-->
+            </LinearLayout>
+
+            <!-- WhatsApp -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/edit_text_background"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <ImageView
+                    android:id="@+id/imgWhatsApp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_whatsapp" />
+
+                <TextView
+                    android:id="@+id/tvWhatsApp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="WhatsApp\nAvailable Mon-Fri • 9-17"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp" />
+
+                <!--            <ImageButton-->
+                <!--                android:id="@+id/btnWhatsAppShare"-->
+                <!--                android:layout_width="wrap_content"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:layout_gravity="end"-->
+                <!--                android:src="@drawable/ic_share"-->
+                <!--                android:background="@android:color/transparent"/>-->
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp"
+    tools:context=".Shop">
+
+    <!-- list_item_test.xml -->
+    <!--    <LinearLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:padding="16dp"-->
+    <!--        android:orientation="vertical">-->
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="9dp"
+        app:cardBackgroundColor="#ffffff"
+        android:layout_marginBottom="7dp"
+        app:cardElevation="10dp"
+
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="120dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="2dp"
+                android:outlineProvider="bounds"
+                android:src="@drawable/soyabeen"
+                tools:ignore="ContentDescription" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingVertical="15dp"
+                android:paddingHorizontal="15dp">
+
+
+
+                <TextView
+                    android:id="@+id/CropNameTextView"
+                    android:text="Soyabeen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="@color/black"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#7A7777"
+                    android:layout_marginTop="5dp"
+                    android:textSize="14sp"
+                    android:text="Rupees"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/CropPriceTextView"
+                    android:text="25000 Rs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    tools:ignore="HardcodedText" />
+
+                <Button
+                    android:id="@+id/btnMore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="80dp"
+                    android:backgroundTint="#317334"
+                    android:padding="0dp"
+                    android:text="More"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText,RtlHardcoded" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    <!--    </LinearLayout>-->
+
+    <!-- Bottom navigation -->
+    <!--    <LinearLayout-->
+    <!--        android:id="@+id/bottom_navigation"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_alignParentBottom="true"-->
+    <!--        android:orientation="horizontal"-->
+    <!--        android:background="@color/white"-->
+    <!--        android:padding="8dp">-->
+
+    <!--        <ImageButton-->
+    <!--            android:layout_width="0dp"-->
+    <!--            android:layout_height="44dp"-->
+    <!--            android:layout_weight="1"-->
+    <!--            android:background="@null"-->
+    <!--            android:layout_marginRight="5dp"-->
+    <!--            android:src="@drawable/ic_home" />-->
+
+    <!--        <ImageButton-->
+    <!--            android:layout_width="0dp"-->
+    <!--            android:layout_height="44dp"-->
+    <!--            android:layout_weight="1"-->
+    <!--            android:layout_marginRight="5dp"-->
+    <!--            android:background="@null"-->
+    <!--            android:src="@drawable/ic_shop" />-->
+
+    <!--        <ImageButton-->
+    <!--            android:layout_width="0dp"-->
+    <!--            android:layout_height="44dp"-->
+    <!--            android:layout_weight="1"-->
+    <!--            android:layout_marginRight="5dp"-->
+    <!--            android:background="@null"-->
+    <!--            android:src="@drawable/ic_blog" />-->
+
+    <!--        <ImageButton-->
+    <!--            android:layout_width="0dp"-->
+    <!--            android:layout_height="44dp"-->
+    <!--            android:layout_weight="1"-->
+
+    <!--            android:layout_marginRight="5dp"-->
+    <!--            android:src="@drawable/ic_profile"-->
+    <!--            android:background="@null" />-->
+    <!--    </LinearLayout>-->
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/bottom_nav_menu"
+        app:itemIconTint="@color/nav_icon_selector"
+        app:itemTextColor="@color/nav_icon_selector" />
+</RelativeLayout>

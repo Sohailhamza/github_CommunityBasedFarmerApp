@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Farmer Connect</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="splash2">Online Market for Farmers and Buyers</string>
+    <string name="splashMain">Sell and Buy Crops</string>
+    <string name="category">Category</string>
+    <string name="don_t_hesitate_to_contact_us_whether_you_have_a_suggestion_on_our_improvement_a_complain_to_discuss_or_an_issue_to_solve">Don’t hesitate to contact us whether you have a suggestion on our improvement, a complain to discuss or an issue to solve.</string>
+</resources>
