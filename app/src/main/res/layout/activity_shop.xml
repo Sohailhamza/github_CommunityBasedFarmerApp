@@ -19,7 +19,6 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="9dp"
         app:cardBackgroundColor="#ffffff"
-        android:layout_marginBottom="7dp"
         app:cardElevation="10dp"
 
         >
@@ -28,14 +27,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="5dp">
+            android:padding="2dp">
 
             <ImageView
                 android:layout_width="100dp"
-                android:layout_height="120dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                android:layout_marginTop="6dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="1dp"
                 android:layout_marginEnd="2dp"
                 android:outlineProvider="bounds"
                 android:src="@drawable/soyabeen"
@@ -44,8 +43,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingVertical="15dp"
-                android:paddingHorizontal="15dp">
+                android:paddingVertical="2dp"
+                android:paddingHorizontal="10dp">
 
 
 
@@ -69,27 +68,36 @@
                     android:text="Rupees"
                     tools:ignore="HardcodedText" />
 
-                <TextView
-                    android:id="@+id/CropPriceTextView"
-                    android:text="25000 Rs"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:layout_marginTop="8dp"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    tools:ignore="HardcodedText" />
 
-                <Button
-                    android:id="@+id/btnMore"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="80dp"
-                    android:backgroundTint="#317334"
-                    android:padding="0dp"
-                    android:text="More"
-                    android:textStyle="bold"
-                    tools:ignore="HardcodedText,RtlHardcoded" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp">
+
+                    <TextView
+                        android:id="@+id/CropPriceTextView"
+                        android:text="25000 Rs"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        tools:ignore="HardcodedText" />
+
+                    <Button
+                        android:id="@+id/btnMore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:backgroundTint="#317334"
+                        android:padding="0dp"
+                        android:text="More"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText" />
+
+                </LinearLayout>
+
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
