@@ -75,6 +75,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingHorizontal="20dp"
             android:orientation="horizontal">
 
             <CheckBox
@@ -82,16 +83,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginLeft="10dp"
+
                 android:text="Remember" />
 
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAlignment="textEnd"
-                android:layout_marginRight="20dp"
-                android:paddingHorizontal="20dp"
+                android:gravity="center"
+
                 android:layout_weight="1"
                 android:text="Forgot password" />
         </LinearLayout>
@@ -109,12 +109,12 @@
             android:id="@+id/GoogleLogin"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:layout_marginHorizontal="10dp"
             android:layout_marginTop="15dp"
             android:backgroundTint="@color/black"
-            app:icon="@drawable/your_google_icon"
-            app:iconGravity="textStart"
             android:text="Or sign in with Google"
-            android:layout_marginHorizontal="10dp"/>
+            app:icon="@drawable/your_google_icon"
+            app:iconGravity="textStart" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -129,7 +129,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:textSize="17dp"
+                android:textSize="17sp"
                 android:textColor="@color/black"
                 android:text="Dont Have an Account?" />
 
