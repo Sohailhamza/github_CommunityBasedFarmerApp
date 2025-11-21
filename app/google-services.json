@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1040334897734",
+    "project_id": "community-based-farmer-app",
+    "storage_bucket": "community-based-farmer-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1040334897734:android:944db2aadf309a05698047",
+        "android_client_info": {
+          "package_name": "com.example.practicenavigation"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqc21kufF-N8FOAMCvAD0IhkONElk2B9I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
