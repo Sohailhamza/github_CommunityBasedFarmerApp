@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:padding="16dp">
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,29 +12,54 @@
         android:orientation="vertical">
 
         <!-- Toolbar/Title Bar -->
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/green"
-            android:padding="16dp">
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@color/green"-->
+<!--            -->
+<!--            >-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/green"
+                android:paddingTop="20dp"
+                android:paddingBottom="2dp"
+                >
+
 
             <ImageView
                 android:id="@+id/ivBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="0"
                 android:src="@drawable/ic_arrow_back"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true" />
+                android:layout_marginTop="5dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Product"
-                android:textColor="@android:color/white"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:layout_centerInParent="true" />
-        </RelativeLayout>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Product"
+                    android:paddingEnd="30dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+<!--        </RelativeLayout>-->
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="5dp"
+            android:background="@android:color/white">
+
 
         <!-- Add Photos Header -->
         <TextView
@@ -129,6 +154,8 @@
             android:textColor="@android:color/white"
             android:padding="12dp"
             android:textSize="16sp" />
+
+        </LinearLayout>
     </LinearLayout>
 
 

@@ -52,6 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter your Email"
+                android:singleLine="true"
                 tools:ignore="HardcodedText" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -66,6 +67,7 @@
                 android:id="@+id/edtName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
                 android:hint="Enter your Name" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -81,6 +83,7 @@
                 android:inputType="textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
                 android:hint="Enter your Password" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -96,6 +99,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="phone"
+                android:singleLine="true"
                 android:hint="Enter your Phone Number" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -109,6 +113,7 @@
                 android:id="@+id/edtCity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
                 android:hint="Enter your City" />
         </com.google.android.material.textfield.TextInputLayout>
 
