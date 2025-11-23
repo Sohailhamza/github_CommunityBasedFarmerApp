@@ -1,73 +1,79 @@
 package com.example.practicenavigation;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.DocumentSnapshot;
+
 
 public class FarmerDashboard extends AppCompatActivity {
 
-    TextView tvWelcome;
-    Button btnLogout, btnManageCrops, btnOrders, btnProfile;
-
+    FloatingActionButton fab;
     FirebaseAuth mAuth;
-    FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_farmer_dashboard);
 
-        tvWelcome = findViewById(R.id.tvWelcome);
-        btnLogout = findViewById(R.id.btnLogout);
-        btnProfile = findViewById(R.id.btnProfile);
-
-
         mAuth = FirebaseAuth.getInstance();
-        db = FirebaseFirestore.getInstance();
+        fab = findViewById(R.id.fab);
 
-        loadFarmerData();
+        // Default fragment on start
+        setupBottomNavigation();
+        loadFragment(new FarmerHomeFragment());
 
-        btnProfile.setOnClickListener(v -> {
-            Intent intent = new Intent(FarmerDashboard.this, ProfileEdit.class);
-            startActivity(intent);
+
+        fab.setOnClickListener(v ->
+                startActivity(new Intent(FarmerDashboard.this, PostProduct.class))
+        );
+    }
+
+    private void loadFragment(Fragment fragment) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .commit();
+    }
+
+
+
+    @SuppressLint("NonConstantResourceId")
+    private void setupBottomNavigation() {
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+
+            int id = item.getItemId();
+            Fragment selectedFragment = null;
+
+            if (id == R.id.nav_farmer_home) {
+                selectedFragment = new FarmerHomeFragment();
+            } else if (id == R.id.nav_crops) {
+                selectedFragment = new ManageCropsFragment();
+            } else if (id == R.id.nav_orders) {
+                selectedFragment = new OrdersFragment();
+            } else if (id == R.id.nav_profile) {
+                selectedFragment = new ProfileFragment();
+            }
+
+            // Load fragment
+            if (selectedFragment != null) {
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, selectedFragment)
+                        .commit();
+            }
+
+            return true; // ✅ Important: Must return a boolean
         });
 
-        btnLogout.setOnClickListener(v -> logoutUser());
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(v -> {
-            Intent intent = new Intent(FarmerDashboard.this, PostProduct.class);
-            startActivity(intent);
-        });
-
-
-
     }
 
-    private void loadFarmerData() {
-        String uid = mAuth.getCurrentUser().getUid();
-        db.collection("Users").document(uid).get()
-                .addOnSuccessListener(snapshot -> {
-                    if(snapshot.exists()) {
-                        String name = snapshot.getString("name");
-                        tvWelcome.setText("Welcome, " + name + "!");
-                    } else {
-                        tvWelcome.setText("Welcome, Farmer!");
-                    }
-                })
-                .addOnFailureListener(e -> tvWelcome.setText("Welcome, Farmer!"));
-    }
-
-    private void logoutUser() {
-        mAuth.signOut();
-        startActivity(new Intent(FarmerDashboard.this, Splash2.class));
-        finish();
-    }
 }
