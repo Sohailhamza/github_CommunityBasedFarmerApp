@@ -1,10 +1,12 @@
 package com.example.practicenavigation;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,11 +14,15 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class FarmerHomeFragment extends Fragment {
 
     private Button btnManageCrops, btnOrders, btnProfile, btnLogout;
+
+    TextView tvWelcome;
     private FirebaseAuth mAuth;
+    FirebaseFirestore db;
 
     @Nullable
     @Override
@@ -26,6 +32,11 @@ public class FarmerHomeFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_farmer_home, container, false);
         mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+
+        tvWelcome = view.findViewById(R.id.tvWelcome);
+        loadFarmerData();
+
 
         btnManageCrops = view.findViewById(R.id.btnManageCrops);
         btnOrders = view.findViewById(R.id.btnOrders);
@@ -60,6 +71,20 @@ public class FarmerHomeFragment extends Fragment {
                     .addToBackStack(null)
                     .commit();
         }
+    }
+
+    private void loadFarmerData() {
+        String uid = mAuth.getCurrentUser().getUid();
+        db.collection("Users").document(uid).get()
+                .addOnSuccessListener(snapshot -> {
+                    if(snapshot.exists()) {
+                        String name = snapshot.getString("name");
+                        tvWelcome.setText("Welcome, Farmer " + name + "!");
+                    } else {
+                        tvWelcome.setText("Welcome, Farmer!");
+                    }
+                })
+                .addOnFailureListener(e -> tvWelcome.setText("Welcome, Farmer!"));
     }
 
     private void logoutUser() {
