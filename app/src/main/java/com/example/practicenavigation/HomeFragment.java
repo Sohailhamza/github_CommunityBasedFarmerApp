@@ -90,11 +90,11 @@ public class HomeFragment extends Fragment {
                     .addToBackStack(null) // Add to back stack for back navigation
                     .commit();
         });
-        FloatingActionButton fab = view.findViewById(R.id.fab);
-        fab.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), PostProduct.class);
-            startActivity(intent);
-        });
+//        FloatingActionButton fab = view.findViewById(R.id.fab);
+//        fab.setOnClickListener(v -> {
+//            Intent intent = new Intent(getActivity(), PostProduct.class);
+//            startActivity(intent);
+//        });
 
     }
 }
