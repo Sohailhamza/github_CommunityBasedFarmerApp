@@ -50,5 +50,6 @@ dependencies {
     implementation ("com.google.firebase:firebase-firestore")
     implementation("com.google.firebase:firebase-auth:24.0.1")
     implementation(platform("com.google.firebase:firebase-bom:34.6.0"))
+    implementation("com.cloudinary:cloudinary-android:3.1.2")
 
 }
