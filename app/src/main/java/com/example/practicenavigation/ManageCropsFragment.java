@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -42,17 +43,27 @@ public class ManageCropsFragment extends Fragment {
     }
 
     private void loadProducts() {
+
+        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+            return;
+        }
+
+        String farmerId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+
         firestore.collection("Products")
-                .orderBy("timestamp")
+                .whereEqualTo("farmerId", farmerId)
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     list.clear();
                     for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
                         ProductModel product = doc.toObject(ProductModel.class);
+                        product.setDocId(doc.getId());
                         list.add(product);
                     }
                     adapter.notifyDataSetChanged();
                 });
     }
+
 
 }

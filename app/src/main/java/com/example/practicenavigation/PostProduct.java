@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.File;
@@ -136,6 +137,9 @@ public class PostProduct extends AppCompatActivity {
         String quantity = etQuantity.getText().toString();
         String unit = spUnit.getSelectedItem().toString();
 
+        String farmerId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+
 
         if (name.isEmpty() || location.isEmpty() || description.isEmpty() ||
                 price.isEmpty() || quantity.isEmpty() || unit.isEmpty() || imageUri == null) {
@@ -166,6 +170,7 @@ public class PostProduct extends AppCompatActivity {
                 product.put("quantity", quantity);
                 product.put("unit", unit);
                 product.put("imageUrl", imageUrl);
+                product.put("farmerId", farmerId);
                 product.put("timestamp", System.currentTimeMillis());
 
                 firestore.collection("Products")

@@ -55,6 +55,11 @@ public class CropsAdapter extends RecyclerView.Adapter<CropsAdapter.ViewHolder> 
         return list.size();
     }
 
+    public interface OnProductActionListener {
+        void onDelete(ProductModel product);
+        void onEdit(ProductModel product);
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivProductImage;
         TextView tvName, tvLocation, tvPrice, tvDescription, tvQuantity;
@@ -68,6 +73,8 @@ public class CropsAdapter extends RecyclerView.Adapter<CropsAdapter.ViewHolder> 
             tvPrice = itemView.findViewById(R.id.tvPrice);
             tvQuantity = itemView.findViewById(R.id.tvQuantity);
             tvDescription = itemView.findViewById(R.id.tvDescription);
+            ImageView ivEdit = itemView.findViewById(R.id.ivEdit);
+            ImageView ivDelete = itemView.findViewById(R.id.ivDelete);
         }
     }
 }
