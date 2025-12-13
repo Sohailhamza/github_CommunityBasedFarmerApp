@@ -4,4 +4,10 @@
         <item>Farmer</item>
         <item>Consumer</item>
     </string-array>
+
+    <string-array name="quantity_units">
+        <item>Grams</item>
+        <item>Kilograms</item>
+        <item>Maund</item>
+    </string-array>
 </resources>

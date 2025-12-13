@@ -4,9 +4,11 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -30,6 +32,10 @@ public class PostProduct extends AppCompatActivity {
     private Button btnPost;
 
     private Uri imageUri;
+
+    private EditText etQuantity;
+    private Spinner spUnit;
+
     private ProgressDialog progressDialog;
 
     // TODO — Replace with your real Cloudinary keys
@@ -77,6 +83,22 @@ public class PostProduct extends AppCompatActivity {
         // Pick Image
         ivAddPhoto.setOnClickListener(v -> pickImage());
 
+        // Quantity + Unit
+        etQuantity = findViewById(R.id.etQuantity);
+        spUnit = findViewById(R.id.spUnit);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.quantity_units,
+                android.R.layout.simple_spinner_item
+        );
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spUnit.setAdapter(adapter);
+
+        //Quantity + Unit end
+
+
         // Back Button
         ivBack.setOnClickListener(v -> {
             startActivity(new Intent(PostProduct.this, FarmerDashboard.class));
@@ -103,15 +125,20 @@ public class PostProduct extends AppCompatActivity {
         }
     }
 
+
+
     private void uploadProduct() {
 
         String name = etProductName.getText().toString();
         String location = etLocation.getText().toString();
         String description = etDescription.getText().toString();
         String price = etPrice.getText().toString();
+        String quantity = etQuantity.getText().toString();
+        String unit = spUnit.getSelectedItem().toString();
+
 
         if (name.isEmpty() || location.isEmpty() || description.isEmpty() ||
-                price.isEmpty() || imageUri == null) {
+                price.isEmpty() || quantity.isEmpty() || unit.isEmpty() || imageUri == null) {
 
             Toast.makeText(this, "Fill all fields & choose an image!", Toast.LENGTH_SHORT).show();
             return;
@@ -136,6 +163,8 @@ public class PostProduct extends AppCompatActivity {
                 product.put("location", location);
                 product.put("description", description);
                 product.put("price", price);
+                product.put("quantity", quantity);
+                product.put("unit", unit);
                 product.put("imageUrl", imageUrl);
                 product.put("timestamp", System.currentTimeMillis());
 
