@@ -40,7 +40,9 @@ public class CropsAdapter extends RecyclerView.Adapter<CropsAdapter.ViewHolder> 
         holder.tvName.setText(product.getName());
         holder.tvLocation.setText(product.getLocation());
         holder.tvPrice.setText("Rs. " + product.getPrice());
+        holder.tvQuantity.setText(product.getQuantity() + " " + product.getUnit());
         holder.tvDescription.setText(product.getDescription());
+
 
 
         Glide.with(context)
@@ -55,7 +57,7 @@ public class CropsAdapter extends RecyclerView.Adapter<CropsAdapter.ViewHolder> 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivProductImage;
-        TextView tvName, tvLocation, tvPrice, tvDescription;
+        TextView tvName, tvLocation, tvPrice, tvDescription, tvQuantity;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -64,6 +66,7 @@ public class CropsAdapter extends RecyclerView.Adapter<CropsAdapter.ViewHolder> 
             tvName = itemView.findViewById(R.id.tvName);
             tvLocation = itemView.findViewById(R.id.tvLocation);
             tvPrice = itemView.findViewById(R.id.tvPrice);
+            tvQuantity = itemView.findViewById(R.id.tvQuantity);
             tvDescription = itemView.findViewById(R.id.tvDescription);
         }
     }

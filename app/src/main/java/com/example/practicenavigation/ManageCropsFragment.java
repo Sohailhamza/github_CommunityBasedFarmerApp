@@ -43,6 +43,7 @@ public class ManageCropsFragment extends Fragment {
 
     private void loadProducts() {
         firestore.collection("Products")
+                .orderBy("timestamp")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     list.clear();
@@ -53,4 +54,5 @@ public class ManageCropsFragment extends Fragment {
                     adapter.notifyDataSetChanged();
                 });
     }
+
 }
