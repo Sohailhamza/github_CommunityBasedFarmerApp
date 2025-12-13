@@ -1,4 +1,4 @@
-package com.example.practicenavigation;
+package com.example.practicenavigation.managecrop;
 
 public class ProductModel {
 
