@@ -70,23 +70,19 @@
             android:id="@+id/profile_image"
             android:layout_width="134dp"
             android:layout_height="126dp"
-            android:src="@drawable/sohail"
+            android:src="@drawable/by_default_image_view"
             app:civ_border_color="#FFFFFF"
             app:civ_border_width="2dp" />
 
         <TextView
+            android:id="@+id/tvName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sohail Hamza"
+            android:text="Your name"
             android:textAlignment="center"
             android:textSize="20dp"
             android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="username"
-            android:textAlignment="center" />
 
         <Button
             android:id="@+id/btnEditProfile"
