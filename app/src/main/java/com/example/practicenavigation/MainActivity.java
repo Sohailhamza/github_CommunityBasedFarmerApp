@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
 import com.example.practicenavigation.profile.ProfileFragment;
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_main);
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -33,10 +35,12 @@ public class MainActivity extends AppCompatActivity {
             if (item.getItemId() == R.id.nav_home) {
                 selectedFragment = new HomeFragment();
                 showActionBar();
-            } else if (item.getItemId() == R.id.nav_categories) {
-                selectedFragment = new CategoryFragment();
-                hideActionBar();
-            } else if (item.getItemId() == R.id.nav_search) {
+            }
+//            else if (item.getItemId() == R.id.nav_categories) {
+//                selectedFragment = new CategoryFragment();
+//                hideActionBar();
+//            }
+            else if (item.getItemId() == R.id.nav_search) {
                 selectedFragment = new SearchFragment();
                 showActionBar();
             } else if (item.getItemId() == R.id.nav_cart) {

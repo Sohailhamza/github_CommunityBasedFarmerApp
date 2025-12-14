@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -14,7 +15,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class ProductDetails extends AppCompatActivity {
 
     private ImageView imageView;
-    private TextView nameTextView, priceTextView, descTextView, locationTextView;
+    private TextView nameTextView, priceTextView, descTextView, locationTextView, productQuantity;
 
     private FirebaseFirestore firestore;
     private ImageView farmerImage;
@@ -24,6 +25,7 @@ public class ProductDetails extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_product_details);
 
         imageView = findViewById(R.id.product_image);
@@ -31,6 +33,8 @@ public class ProductDetails extends AppCompatActivity {
         priceTextView = findViewById(R.id.product_price);
         descTextView = findViewById(R.id.product_description);
         locationTextView = findViewById(R.id.product_location);
+        productQuantity = findViewById(R.id.product_quantity);
+
 
         farmerImage = findViewById(R.id.farmer_profile_image);
         farmerName = findViewById(R.id.farmer_name);
@@ -84,9 +88,10 @@ public class ProductDetails extends AppCompatActivity {
             // Set the data to the views
 
             nameTextView.setText(name);
-            priceTextView.setText(price + " Rs " + " Per " + quantity + " " + unit);
+            priceTextView.setText(price +" Rs " + " Per " + unit);
+            productQuantity.setText(quantity + " " + unit);
 
-            descTextView.setText(description);
+            descTextView.setText("Product Description: " + "\n\t" + " . " + description);
             locationTextView.setText(location);
 
             Glide.with(this)

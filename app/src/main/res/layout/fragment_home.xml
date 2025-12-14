@@ -22,8 +22,8 @@
             android:id="@+id/searchView"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:layout_marginTop="1dp"
             android:singleLine="true"
-            android:layout_marginTop="15dp"
             android:background="@drawable/edittext_bg"
             android:queryHint="Search Crop"
             android:iconifiedByDefault="false"
@@ -31,16 +31,16 @@
             android:padding="5dp"/>
 
 
-        <TextView
-            android:id="@+id/ShopByCat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="2dp"
-            android:text="Shop by category"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
-            tools:ignore="HardcodedText" />
+<!--        <TextView-->
+<!--            android:id="@+id/ShopByCat"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="8dp"-->
+<!--            android:layout_marginTop="2dp"-->
+<!--            android:text="Shop by category"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textColor="@android:color/black"-->
+<!--            tools:ignore="HardcodedText" />-->
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/category_recycler_view"

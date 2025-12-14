@@ -1,45 +1,37 @@
 package com.example.practicenavigation;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.practicenavigation.managecrop.ProductModel;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
+import androidx.appcompat.widget.SearchView;
+
 import java.util.ArrayList;
 import java.util.List;
-import com.example.practicenavigation.managecrop.ProductModel;
-
 
 public class HomeFragment extends Fragment {
 
     private RecyclerView recommendedRecyclerView;
     private RecommendedAdapter recommendedAdapter;
-    private List<ProductModel> productList;
     private FirebaseFirestore firestore;
 
     @Nullable
     @Override
-    public View onCreateView(
-            @NonNull LayoutInflater inflater,
-            @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState) {
-
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
@@ -50,31 +42,44 @@ public class HomeFragment extends Fragment {
         recommendedRecyclerView = view.findViewById(R.id.recommended_recycler_view);
         recommendedRecyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 2));
 
-        productList = new ArrayList<>();
-        recommendedAdapter = new RecommendedAdapter(requireContext(), productList);
+        // Initialize adapter (no data yet)
+        recommendedAdapter = new RecommendedAdapter(requireContext());
         recommendedRecyclerView.setAdapter(recommendedAdapter);
 
         firestore = FirebaseFirestore.getInstance();
 
+        // Load Firestore data
         loadRecommendedProducts();
+
+        // Setup SearchView
+        SearchView searchView = view.findViewById(R.id.searchView);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                recommendedAdapter.filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                recommendedAdapter.filter(newText);
+                return false;
+            }
+        });
     }
 
     private void loadRecommendedProducts() {
-
         firestore.collection("Products")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
-
-                    Log.d("HOME", "Docs size: " + queryDocumentSnapshots.size());
-
-                    productList.clear();
+                    List<ProductModel> productList = new ArrayList<>();
                     for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
                         ProductModel product = doc.toObject(ProductModel.class);
                         productList.add(product);
                     }
-                    recommendedAdapter.notifyDataSetChanged();
+                    recommendedAdapter.updateList(productList);
+                    Log.d("HOME", "Products loaded: " + productList.size());
                 })
-                .addOnFailureListener(e ->
-                        Log.e("HOME", "Error", e));
+                .addOnFailureListener(e -> Log.e("HOME", "Error loading products", e));
     }
 }

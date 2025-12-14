@@ -32,7 +32,7 @@
 
         <TextView
             android:id="@+id/product_name"
-            android:layout_width="0dp"
+            android:layout_width="164dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="sans-serif-medium"
@@ -46,29 +46,54 @@
             android:id="@+id/product_location"
             android:layout_width="wrap_content"
             android:width="150dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="City Name"
+            android:gravity="center"
             android:layout_marginStart="0dp"
             android:paddingStart="20dp"
             android:textSize="14sp" />
     </LinearLayout>
 
     <!-- Product Price -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+
+
     <TextView
         android:id="@+id/product_price"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:text="2500 Rs Per Kg"
         android:textSize="16sp"
+        android:textColor="@color/orange"
+        android:textStyle="bold"
+        android:paddingLeft="15dp"
+        android:layout_marginTop="8dp" />
+    <TextView
+        android:id="@+id/product_quantity"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:text=" 1 Kg "
+        android:textSize="14sp"
         android:textColor="@color/black"
         android:textStyle="bold"
         android:paddingLeft="15dp"
         android:layout_marginTop="8dp" />
 
+    </LinearLayout>
     <!-- Description -->
     <TextView
         android:id="@+id/product_description"
-        android:layout_width="wrap_content"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:padding="5dp"
