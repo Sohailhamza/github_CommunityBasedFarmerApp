@@ -49,11 +49,11 @@ dependencies {
     implementation ("com.google.firebase:firebase-auth")
     implementation ("com.google.firebase:firebase-firestore")
     implementation("com.google.firebase:firebase-auth:24.0.1")
-    implementation(platform("com.google.firebase:firebase-bom:34.6.0"))
+    implementation(platform("com.google.firebase:firebase-bom:34.7.0"))
     implementation("com.cloudinary:cloudinary-android:3.1.2")
 
-    implementation ("com.github.bumptech.glide:glide:4.16.0")
-    annotationProcessor ("com.github.bumptech.glide:compiler:4.16.0")
+    implementation ("com.github.bumptech.glide:glide:5.0.5")
+    annotationProcessor ("com.github.bumptech.glide:compiler:5.0.5")
     implementation("com.squareup.okhttp3:okhttp:5.3.2")
 
 

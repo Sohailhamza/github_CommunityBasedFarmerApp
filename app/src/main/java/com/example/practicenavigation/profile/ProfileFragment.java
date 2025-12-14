@@ -1,4 +1,4 @@
-package com.example.practicenavigation;
+package com.example.practicenavigation.profile;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.example.practicenavigation.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -65,14 +66,14 @@ public class ProfileFragment extends Fragment {
                 .addOnSuccessListener(doc -> {
                     if (doc.exists()) {
                         String name = doc.getString("name");
-                        String imageUrl = doc.getString("imageUrl");
+                        String profileImageUrl = doc.getString("profileImageUrl");
 
                         tvName.setText(name != null ? name : "Your Name");
 
                         // Load profile image using Glide
-                        if (imageUrl != null && !imageUrl.isEmpty()) {
+                        if (profileImageUrl != null && !profileImageUrl.isEmpty()) {
                             Glide.with(this)  // use 'this' Fragment for Glide
-                                    .load(imageUrl)
+                                    .load(profileImageUrl)
                                     .placeholder(R.drawable.by_default_image_view) // default image if empty
                                     .error(R.drawable.by_default_image_view)       // if loading fails
                                     .circleCrop()                   // make it circular

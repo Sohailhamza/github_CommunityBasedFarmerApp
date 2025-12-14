@@ -43,7 +43,7 @@
             android:name=".Feedback"
             android:exported="false" />
         <activity
-            android:name=".ProfileEdit"
+            android:name=".profile.ProfileEdit"
             android:exported="false" />
         <activity
             android:name=".ContactUs"

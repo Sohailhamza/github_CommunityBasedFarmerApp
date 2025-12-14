@@ -11,55 +11,71 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.example.practicenavigation.managecrop.ProductModel;
+
 import java.util.List;
 
-public class RecommendedAdapter extends RecyclerView.Adapter<RecommendedAdapter.RecommendedViewHolder> {
+public class RecommendedAdapter extends RecyclerView.Adapter<RecommendedAdapter.ViewHolder> {
 
-    private final List<RecommendedItem> recommendedList;
-    private final Context context;
+    private Context context;
+    private List<ProductModel> list;
 
-    // ✅ Proper constructor with context
-    public RecommendedAdapter(Context context, List<RecommendedItem> recommendedList) {
+    public RecommendedAdapter(Context context, List<ProductModel> list) {
         this.context = context;
-        this.recommendedList = recommendedList;
+        this.list = list;
     }
 
     @NonNull
     @Override
-    public RecommendedViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recommended_item, parent, false);
-        return new RecommendedViewHolder(view);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context)
+                .inflate(R.layout.recommended_item, parent, false);
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecommendedViewHolder holder, int position) {
-        RecommendedItem item = recommendedList.get(position);
-        holder.recommendedName.setText(item.getName());
-        holder.recommendedImage.setImageResource(item.getImageResource());
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        // ✅ Start ProductDetails activity on click
+        ProductModel product = list.get(position);
+
+        holder.tvName.setText(product.getName());
+
+        Glide.with(context)
+                .load(product.getImageUrl())
+                .placeholder(R.drawable.placeholder)
+                .into(holder.imageView);
+
+        // 🔥 CLICK HANDLER
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, ProductDetails.class);
-            intent.putExtra("product_name", item.getName());
-            intent.putExtra("product_image", item.getImageResource());
+            intent.putExtra("farmerId", product.getFarmerId());
+            intent.putExtra("name", product.getName());
+            intent.putExtra("imageUrl", product.getImageUrl());
+            intent.putExtra("price", product.getPrice());
+            intent.putExtra("quantity", product.getQuantity());
+            intent.putExtra("unit", product.getUnit());
+            intent.putExtra("description", product.getDescription());
+            intent.putExtra("location", product.getLocation());
             context.startActivity(intent);
         });
     }
 
+
     @Override
     public int getItemCount() {
-        return recommendedList.size();
+        return list.size();
     }
 
-    public static class RecommendedViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView recommendedImage;
-        TextView recommendedName;
+        ImageView imageView;
+        TextView tvName;
 
-        public RecommendedViewHolder(View itemView) {
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            recommendedImage = itemView.findViewById(R.id.recommended_image);
-            recommendedName = itemView.findViewById(R.id.recommended_name);
+            imageView = itemView.findViewById(R.id.recommended_image);
+            tvName = itemView.findViewById(R.id.recommended_name);
         }
     }
 }

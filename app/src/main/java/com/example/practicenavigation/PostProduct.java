@@ -23,6 +23,7 @@ import java.io.File;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.Executors;
 
 public class PostProduct extends AppCompatActivity {
 
@@ -130,35 +131,38 @@ public class PostProduct extends AppCompatActivity {
 
     private void uploadProduct() {
 
-        String name = etProductName.getText().toString();
-        String location = etLocation.getText().toString();
-        String description = etDescription.getText().toString();
-        String price = etPrice.getText().toString();
-        String quantity = etQuantity.getText().toString();
+        String name = etProductName.getText().toString().trim();
+        String location = etLocation.getText().toString().trim();
+        String description = etDescription.getText().toString().trim();
+        String price = etPrice.getText().toString().trim();
+        String quantity = etQuantity.getText().toString().trim();
         String unit = spUnit.getSelectedItem().toString();
+
+        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+            Toast.makeText(this, "User not logged in", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         String farmerId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-
-
-        if (name.isEmpty() || location.isEmpty() || description.isEmpty() ||
-                price.isEmpty() || quantity.isEmpty() || unit.isEmpty() || imageUri == null) {
+        if (name.isEmpty() || location.isEmpty() || description.isEmpty()
+                || price.isEmpty() || quantity.isEmpty() || imageUri == null) {
 
             Toast.makeText(this, "Fill all fields & choose an image!", Toast.LENGTH_SHORT).show();
             return;
         }
 
+        progressDialog.setCancelable(false);
         progressDialog.show();
 
-        new Thread(() -> {
+        Executors.newSingleThreadExecutor().execute(() -> {
             try {
                 InputStream inputStream = getContentResolver().openInputStream(imageUri);
 
-                Map uploadResult = cloudinary.uploader().upload(inputStream,
-                        ObjectUtils.asMap(
-                                "folder", "farmer_products",
-                                "resource_type", "image"
-                        ));
+                Map uploadResult = cloudinary.uploader().upload(
+                        inputStream,
+                        ObjectUtils.asMap("folder", "farmer_products")
+                );
 
                 String imageUrl = uploadResult.get("secure_url").toString();
 
@@ -173,29 +177,33 @@ public class PostProduct extends AppCompatActivity {
                 product.put("farmerId", farmerId);
                 product.put("timestamp", System.currentTimeMillis());
 
-                firestore.collection("Products")
-                        .add(product)
-                        .addOnSuccessListener(doc -> {
-                            progressDialog.dismiss();
-                            Toast.makeText(PostProduct.this, "Product Posted!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(PostProduct.this, FarmerDashboard.class));
-                            finish();
-                        })
-                        .addOnFailureListener(e -> {
-                            progressDialog.dismiss();
-                            Toast.makeText(PostProduct.this,
-                                    "Firestore Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                        });
+                runOnUiThread(() -> {
+                    firestore.collection("Products")
+                            .add(product)
+                            .addOnSuccessListener(doc -> {
+                                progressDialog.dismiss();
+
+                                Toast.makeText(this, "Product Posted!", Toast.LENGTH_SHORT).show();
+
+                                // 👉 GO TO MANAGE CROPS (NOT HOME)
+                                Intent intent = new Intent(this, FarmerDashboard.class);
+                                intent.putExtra("open_manage", true);
+                                startActivity(intent);
+                                finish();
+                            })
+                            .addOnFailureListener(e -> {
+                                progressDialog.dismiss();
+                                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            });
+                });
 
             } catch (Exception e) {
                 runOnUiThread(() -> {
                     progressDialog.dismiss();
-                    Toast.makeText(PostProduct.this,
-                            "Cloudinary Error: " + e.getMessage(),
-                            Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
                 });
             }
-        }).start();
-
+        });
     }
+
 }

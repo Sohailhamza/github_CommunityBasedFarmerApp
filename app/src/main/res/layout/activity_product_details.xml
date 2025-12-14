@@ -3,18 +3,23 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
+    android:backgroundTint="@color/white"
+    android:layout_marginTop="20dp"
     android:paddingHorizontal="2dp"
-    android:paddingBottom="8dp">
+    android:layout_marginBottom="10dp">
 
     <!-- Product Image -->
     <ImageView
         android:id="@+id/product_image"
         android:layout_width="match_parent"
         android:layout_height="280dp"
-        android:src="@drawable/dryfruits" />
+        android:paddingHorizontal="4dp"
+        android:layout_marginHorizontal="2dp"
+        android:src="@drawable/by_default_image_view"
+        />
 
     <!-- Product Name and City -->
     <LinearLayout
@@ -38,6 +43,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/product_location"
             android:layout_width="wrap_content"
             android:width="150dp"
             android:layout_height="wrap_content"
@@ -49,6 +55,7 @@
 
     <!-- Product Price -->
     <TextView
+        android:id="@+id/product_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="2500 Rs Per Kg"
@@ -60,6 +67,7 @@
 
     <!-- Description -->
     <TextView
+        android:id="@+id/product_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -100,52 +108,71 @@
                 android:gravity="center_vertical">
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/farmer_profile_image"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/sohail"
+                    android:src="@drawable/profile_placeholder"
                     android:layout_marginEnd="12dp"
                     android:scaleType="centerCrop" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="162dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/farmer_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Sohail Hamza"
                         android:paddingBottom="2dp"
+                        android:text="Name of farmer"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/farmer_city"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Sahiwal"
                         android:textColor="@color/black"
                         android:textSize="14sp" />
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+
+                    <Button
+                        android:id="@+id/contact_seller_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CONTACT"
+                        android:backgroundTint="#4CAF50"
+                        android:textColor="#FFFFFF"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginBottom="1dp" />
+                </LinearLayout>
+
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <!-- Contact Seller Button -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center">
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:gravity="center">-->
 
-        <Button
-            android:id="@+id/contact_seller_button"
-            android:layout_width="350dp"
-            android:layout_height="60dp"
-            android:text="CONTACT THE SELLER"
-            android:backgroundTint="#4CAF50"
-            android:textColor="#FFFFFF"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp" />
-    </LinearLayout>
+<!--        <Button-->
+<!--            android:id="@+id/contact_seller_button"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="CONTACT"-->
+<!--            android:backgroundTint="#4CAF50"-->
+<!--            android:textColor="#FFFFFF"-->
+<!--            android:layout_marginTop="1dp"-->
+<!--            android:layout_marginBottom="1dp" />-->
+<!--    </LinearLayout>-->
 
 </LinearLayout>

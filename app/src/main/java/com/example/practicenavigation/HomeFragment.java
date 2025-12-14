@@ -2,6 +2,7 @@ package com.example.practicenavigation;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,86 +16,65 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.practicenavigation.managecrop.ProductModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.example.practicenavigation.managecrop.ProductModel;
+
 
 public class HomeFragment extends Fragment {
 
-    private RecyclerView categoryRecyclerView, recommendedRecyclerView;
-    private CategoryAdapter categoryAdapter;
+    private RecyclerView recommendedRecyclerView;
     private RecommendedAdapter recommendedAdapter;
-    private List<Category> categoryList;
-    private List<RecommendedItem> recommendedList;
-
-
-
+    private List<ProductModel> productList;
+    private FirebaseFirestore firestore;
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(
+            @NonNull LayoutInflater inflater,
+            @Nullable ViewGroup container,
+            @Nullable Bundle savedInstanceState) {
+
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
-
         super.onViewCreated(view, savedInstanceState);
 
-
-        // Initialize RecyclerViews
-        categoryRecyclerView = view.findViewById(R.id.category_recycler_view);
         recommendedRecyclerView = view.findViewById(R.id.recommended_recycler_view);
-
-        // Setup Category RecyclerView with horizontal LinearLayoutManager
-        categoryRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false));
-        categoryList = new ArrayList<>();
-        categoryList.add(new Category("Green", R.drawable.greem));
-        categoryList.add(new Category("Almond", R.drawable.almond));
-        categoryList.add(new Category("Wheat", R.drawable.wheet));
-        categoryList.add(new Category("Dry Fruits", R.drawable.dryfruits));
-        categoryList.add(new Category("Wheat", R.drawable.wheet));
-        categoryList.add(new Category("Wheat", R.drawable.wheet));
-        categoryAdapter = new CategoryAdapter(categoryList);
-        categoryRecyclerView.setAdapter(categoryAdapter);
-
-        // Setup Recommended RecyclerView with GridLayoutManager (2 columns)
         recommendedRecyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 2));
-        int spacingInPixels = 16; // Adjust spacing as needed
-        int numberOfColumns = 2;
-        recommendedRecyclerView.addItemDecoration(new GridSpacingItemDecoration(spacingInPixels, numberOfColumns));
 
-        recommendedList = new ArrayList<>();
-        recommendedList.add(new RecommendedItem("Soyabeen", R.drawable.soyabeen));
-        recommendedList.add(new RecommendedItem("Fig Regular", R.drawable.figreular));
-        recommendedList.add(new RecommendedItem("Almonds", R.drawable.almond));
-        recommendedList.add(new RecommendedItem("Dry Fruits", R.drawable.dryfruits));
-        recommendedList.add(new RecommendedItem("Soybean", R.drawable.soyabeen));
-        recommendedList.add(new RecommendedItem("Fig Regular", R.drawable.figreular));
-        recommendedList.add(new RecommendedItem("Almonds", R.drawable.almond));
-        recommendedList.add(new RecommendedItem("Almonds", R.drawable.almond));
-
-        recommendedAdapter = new RecommendedAdapter(requireContext(), recommendedList);
+        productList = new ArrayList<>();
+        recommendedAdapter = new RecommendedAdapter(requireContext(), productList);
         recommendedRecyclerView.setAdapter(recommendedAdapter);
 
-        // Handle click on "Shop by category" TextView to navigate to CategoryFragment
-        TextView toShopTextView = view.findViewById(R.id.ShopByCat);
-        toShopTextView.setOnClickListener(v -> {
-            CategoryFragment categoriesFragment = new CategoryFragment();
-            requireActivity().getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_container, categoriesFragment) // Your fragment container id here
-                    .addToBackStack(null) // Add to back stack for back navigation
-                    .commit();
-        });
-//        FloatingActionButton fab = view.findViewById(R.id.fab);
-//        fab.setOnClickListener(v -> {
-//            Intent intent = new Intent(getActivity(), PostProduct.class);
-//            startActivity(intent);
-//        });
+        firestore = FirebaseFirestore.getInstance();
 
+        loadRecommendedProducts();
+    }
+
+    private void loadRecommendedProducts() {
+
+        firestore.collection("Products")
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+
+                    Log.d("HOME", "Docs size: " + queryDocumentSnapshots.size());
+
+                    productList.clear();
+                    for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
+                        ProductModel product = doc.toObject(ProductModel.class);
+                        productList.add(product);
+                    }
+                    recommendedAdapter.notifyDataSetChanged();
+                })
+                .addOnFailureListener(e ->
+                        Log.e("HOME", "Error", e));
     }
 }

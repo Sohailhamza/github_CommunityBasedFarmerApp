@@ -108,8 +108,10 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:text="LOGIN"
+            android:textSize="30sp"
+            android:textStyle="bold"
             android:backgroundTint="@color/green"
-            android:layout_marginHorizontal="10dp"/>
+            android:layout_marginHorizontal="20dp"/>
 
 
         <com.google.android.material.button.MaterialButton

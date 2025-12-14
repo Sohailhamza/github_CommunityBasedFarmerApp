@@ -1,4 +1,4 @@
-package com.example.practicenavigation;
+package com.example.practicenavigation.profile;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.example.practicenavigation.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -158,7 +159,7 @@ public class ProfileEdit extends AppCompatActivity {
     private void saveImageUrlToFirebase(String imageUrl) {
         firestore.collection("Users")
                 .document(user.getUid())
-                .update("imageUrl", imageUrl)
+                .update("profileImageUrl", imageUrl)
                 .addOnSuccessListener(unused ->
                         runOnUiThread(() ->
                                 Toast.makeText(this,
